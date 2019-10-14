@@ -54,10 +54,10 @@ fi
 
 # Populating Cache
 print_status "Populating apt-get cache..."
-apt-get update
+apt update
 
 print_status "Installing packages required for setup..."
-apt-get install -y docker.io apt-transport-https lsb-release curl fail2ban unattended-upgrades ufw dnsutils > /dev/null 2>&1
+apt install -y docker.io apt-transport-https lsb-release curl fail2ban unattended-upgrades ufw dnsutils
 
 systemctl enable docker
 systemctl start docker
@@ -243,13 +243,13 @@ do
 done
 
 if [[ $(docker exec -it zen-node /usr/local/bin/gosu user zen-cli z_listaddresses | wc -l) -eq 2 ]]; then
-  print_status "Generating shield address for node... you will need to send 1 ZEN to this address:"
+  print_status "Generating shield address for node... you will need to send 42 ZEN to this address:"
   docker exec -it zen-node /usr/local/bin/gosu user zen-cli z_getnewaddress
 
   print_status "Restarting secnodetracker"
   systemctl restart zen-secnodetracker
 else
-  print_status "Node already has shield address... you will need to send 1 ZEN to this address:"
+  print_status "Node already has shield address... you will need to send 42 ZEN to this address:"
   docker exec -it zen-node /usr/local/bin/gosu user zen-cli z_listaddresses
 fi
 
