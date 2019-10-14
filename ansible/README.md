@@ -22,10 +22,6 @@ region=na
 node.example.com fqdn=node.example.com stakeaddr=test nodetype=secure
 node2.example.com fqdn=node3.example.com stakeaddr=test nodetype=secure
 node3.example.com fqdn=node2.example.com stakeaddr=test nodetype=secure
-
-[bootstrap-nodes]
-node2.example.com
-node3.example.com
 ```
 
 If you are running this from an existing node, jump down to the [bootstrap node](https://github.com/sebbourgeois/docker-zen-node/tree/master/ansible#bootstraping-the-blockchain) section
@@ -58,29 +54,6 @@ Balance:
 ```
 
 You will now need to send the 1 ZEN to the shield addresses that have a balance of 0.0
-
-### Bootstraping the blockchain
-
-*Bootstrapping currently does not work.*
-
-If you are running the installer on the same server as an existing zen-node,
-you can bootstrap/seed the initial blockchain to your new nodes so they can sync faster.
-
-Simply add the new nodes to your hosts inventory file as:
-
-```
-[bootstrap-nodes]
-new-node1.example.com
-new-node2.example.com
-```
-
-Now run the bootstrap playbook:
-
-```
-ansible-playbook -i hosts bootstrap.yml
-```
-
-This will copy the blockchain from your current node (running the installer) to your new nodes. After you run this, remove the nodes from the [bootstrap-nodes] group and run the full installer.
 
 ### Upgrading
 
